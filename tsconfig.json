@@ -19,7 +19,10 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@/components/*": ["./components/*"], // Supprimez ou modifiez cette ligne
+      "@/app/*": ["./app/*"], // Ajoutez cet alias
+      "@/app/components/*": ["./app/components/*"] // Ajoutez cet alias
     }
   },
   "include": [
