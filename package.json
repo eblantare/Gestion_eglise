@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "name": "frontend",
     "version": "0.1.0",
     "private": true,
@@ -28,4 +29,9 @@
         "tailwindcss": "^4.0.0",
         "typescript": "^5"
     }
+=======
+  "dependencies": {
+    "lucide-react": "^0.560.0"
+  }
+>>>>>>> bfd9de9309e41731f95d414b23ed2561ef560c04
 }
