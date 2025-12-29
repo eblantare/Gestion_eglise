@@ -1,15 +1,14 @@
-# members/urls.py - VERSION FINALE COMPLÈTE
+# members/urls.py - VERSION CORRIGÉE
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import views
 
-# Router pour les ViewSets
 router = DefaultRouter()
 router.register(r'members', views.MemberViewSet)
 
 urlpatterns = [
     # ==================== AUTHENTIFICATION ====================
-    path('auth/login/', views.login_view, name='login'),
+    path('auth/login/', views.login_view, name='login'),  # PAS d'espace !
     path('auth/register/', views.register_view, name='register'),
     path('auth/logout/', views.logout_view, name='logout'),
     path('auth/me/', views.me_view, name='me'),

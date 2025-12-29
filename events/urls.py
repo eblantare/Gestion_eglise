@@ -1,11 +1,9 @@
 # events/urls.py
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import EventViewSet
-
-router = DefaultRouter()
-router.register(r'events', EventViewSet)  # SUPPRIMEZ basename='event'
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('', views.events_list_api, name='events-list-api'),
+    path('<slug:slug>/', views.event_detail_api, name='event-detail-api'),
+    path('category/<str:category>/', views.events_by_category_api, name='events-by-category'),
 ]

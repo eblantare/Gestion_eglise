@@ -1,0 +1,17 @@
+<!-- Créez le dossier et fichier : cms/templates/admin/base_site.html -->
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | Administration Église{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <img src="/static/admin/img/icon-church.svg" alt="">
+        Administration de l'Église
+    </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}
+<!-- Vous pouvez ajouter des liens globaux ici -->
+{% endblock %}

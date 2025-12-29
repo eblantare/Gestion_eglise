@@ -1,0 +1,69 @@
+<!-- C:\projets\egg_def\cms\templates\cms\page_detail.html -->
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <style>
+        /* Pour éviter l'avertissement, on met le style ici dans une balise <style> */
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .featured-image {
+            max-width: 100%;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .content {
+            margin-top: 30px;
+        }
+
+        .meta {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>{{ page.title }}</h1>
+
+    <!-- Afficher l'image si elle existe -->
+    {% if page.featured_image %}
+    <img src="{{ page.featured_image.url }}" alt="{{ page.title }}" class="featured-image">
+    {% endif %}
+
+    <!-- Afficher le contenu de la page -->
+    <div class="content">
+        {{ page.content|safe }}
+    </div>
+
+    <!-- Informations supplémentaires -->
+    <div class="meta">
+        <p>Publié le : {{ page.created_at|date:"d/m/Y" }}</p>
+        {% if page.is_homepage %}
+        <p>📌 <em>Cette page est la page d'accueil du site</em></p>
+        {% endif %}
+    </div>
+
+    <p><a href="/">← Retour à l'accueil</a></p>
+</body>
+
+</html>
