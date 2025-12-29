@@ -1,5 +1,37 @@
 {
+<<<<<<< HEAD
+    "name": "frontend",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "full-dev": "concurrently \"npm run dev\" \"cd ../egg_def && python manage.py runserver\""
+    },
+    "dependencies": {
+        "framer-motion": "^12.23.26",
+        "lucide-react": "^0.560.0",
+        "next": "16.0.8",
+        "react": "19.2.1",
+        "react-dom": "19.2.1"
+    },
+    "devDependencies": {
+        "@tailwindcss/postcss": "^4.0.0",
+        "@types/node": "^20",
+        "@types/react": "^18",
+        "@types/react-dom": "^18",
+        "autoprefixer": "^10.0.1",
+        "eslint": "^8",
+        "eslint-config-next": "14.x.x",
+        "postcss": "^8",
+        "tailwindcss": "^4.0.0",
+        "typescript": "^5"
+    }
+=======
   "dependencies": {
     "lucide-react": "^0.560.0"
   }
+>>>>>>> bfd9de9309e41731f95d414b23ed2561ef560c04
 }
