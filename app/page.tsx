@@ -1,18 +1,29 @@
-// app/page.tsx - VERSION AMÉLIORÉE
+// app/page.tsx - VERSION SLIDESHOW BACKGROUND PROPRE
 'use client'
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { 
+import {
   ArrowRight, Users, Calendar, BookOpen, Music, Heart,
-  ChevronDown, Sparkles, Star, Church, Target, Trophy
+  ChevronDown, Sparkles, Star, Trophy
 } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 
 export default function HomePage() {
   const [currentVerse, setCurrentVerse] = useState(0)
+  const [bgIndex, setBgIndex] = useState(0)
   const { isAuthenticated } = useAuth()
+
+  // 👉 Images du background (public/)
+  const backgrounds = [
+    '/photo1.jpg',
+    '/photo2.jpg',
+    '/photo3.jpg',
+    '/photo4.jpg',
+    '/photo5.jpg',
+    '/photo6.jpg',
+  ]
 
   const verses = [
     "Car c'est par la grâce que vous êtes sauvés, par le moyen de la foi.",
@@ -22,11 +33,29 @@ export default function HomePage() {
     "Je puis tout par celui qui me fortifie."
   ]
 
+  // rotation versets
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentVerse((prev) => (prev + 1) % verses.length)
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  // rotation background
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBgIndex((prev) => (prev + 1) % backgrounds.length)
+    }, 6000)
+
+    return () => clearInterval(interval)
+  }, [])
+
   const ministries = [
     {
       icon: <Users className="w-8 h-8" />,
       title: "CDEJ-RAFISSA",
-      description: "Centre dynamique pour les jeunes",
+      description: "Centre de Développement des Enfants et des Jeunes",
       color: "from-blue-500 to-cyan-500",
       href: "/ministries/cdej-rafissa"
     },
@@ -56,7 +85,7 @@ export default function HomePage() {
   const upcomingEvents = [
     {
       title: "Culte Dominical",
-      date: "Dimanche, 9h",
+      date: "Dimanche, 7h",
       description: "Temps de louange et d'enseignement"
     },
     {
@@ -65,151 +94,103 @@ export default function HomePage() {
       description: "Rencontre spéciale pour la jeunesse"
     },
     {
-      title: "Étude Biblique",
+      title: "Culte du soir",
       date: "Mercredi, 18h",
-      description: "Étude approfondie en petits groupes"
+      description: "Vivre la présence de Dieu"
     }
   ]
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentVerse((prev) => (prev + 1) % verses.length)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
-
   return (
     <div className="min-h-screen overflow-hidden">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
+
+      {/* ================= HERO ================= */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
+
+        {/* 🔥 BACKGROUND SLIDESHOW NET SANS FLOU */}
         <div className="absolute inset-0">
-          {/* Effets visuels */}
+          {backgrounds.map((img, index) => (
+            <motion.div
+              key={img}
+              className="absolute inset-0 bg-center bg-cover bg-no-repeat will-change-transform"
+              style={{
+                backgroundImage: `url(${img})`
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: index === bgIndex ? 1 : 0 }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+            />
+          ))}
+        </div>
+
+        {/* 🔥 OVERLAY LISIBILITÉ (IMPORTANT) */}
+        <div className="absolute inset-0 bg-black/40" />
+
+        {/* décor lumineux */}
+        <div className="absolute inset-0">
           <motion.div
-            className="absolute -top-20 -right-20 w-64 h-64 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
-            animate={{
-              scale: [1, 1.1, 1],
-              x: [0, 100, 0],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-            }}
+            className="absolute -top-20 -right-20 w-64 h-64 bg-blue-300 rounded-full blur-3xl opacity-20"
+            animate={{ scale: [1, 1.1, 1], x: [0, 100, 0] }}
+            transition={{ duration: 20, repeat: Infinity }}
           />
+
           <motion.div
-            className="absolute -bottom-20 -left-20 w-64 h-64 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
-            animate={{
-              scale: [1, 1.2, 1],
-              x: [0, -100, 0],
-            }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-            }}
+            className="absolute -bottom-20 -left-20 w-64 h-64 bg-purple-300 rounded-full blur-3xl opacity-20"
+            animate={{ scale: [1, 1.2, 1], x: [0, -100, 0] }}
+            transition={{ duration: 25, repeat: Infinity }}
           />
         </div>
 
+        {/* CONTENU */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
+
+          {/* BADGE */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full mb-10"
           >
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full mb-8">
-              <Sparkles size={20} />
-              <span className="font-semibold">Bienvenue dans notre famille</span>
-            </div>
-            
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Église Grande Grâce
-              </span>
-            </h1>
-            
-            <p className="text-2xl md:text-3xl text-gray-700 mb-8 max-w-3xl mx-auto">
-              Une communauté où la <span className="text-blue-600 font-semibold">grâce</span> rencontre la{' '}
-              <span className="text-purple-600 font-semibold">vie</span>
-            </p>
+            <Sparkles size={20} />
+            <span className="font-semibold">Bienvenue dans notre famille</span>
           </motion.div>
 
-          {/* Verset défilant */}
+          {/* TITRE */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white"
+          >
+            Église de Grande Grâce de Défalé
+          </motion.h1>
+
+          <p className="text-2xl md:text-3xl text-white/90 mb-8 max-w-3xl mx-auto">
+            Une communauté où la <span className="text-blue-300">grâce</span> rencontre la{' '}
+            <span className="text-purple-300">vie</span>
+          </p>
+
+          {/* VERSET */}
           <motion.div
             key={currentVerse}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
             className="mb-12"
           >
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-2xl max-w-2xl mx-auto border border-white/20">
-              <BookOpen className="w-12 h-12 text-blue-500 mx-auto mb-4" />
-              <p className="text-xl md:text-2xl text-gray-800 italic font-serif mb-4">
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 max-w-2xl mx-auto border border-white/20">
+              <BookOpen className="w-12 h-12 text-blue-200 mx-auto mb-4" />
+              <p className="text-xl md:text-2xl text-white italic">
                 "{verses[currentVerse]}"
               </p>
-              <div className="flex items-center justify-center gap-2">
-                {verses.map((_, index) => (
-                  <div
-                    key={index}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      index === currentVerse
-                        ? 'bg-blue-600 w-8'
-                        : 'bg-gray-300'
-                    }`}
-                  />
-                ))}
-              </div>
             </div>
           </motion.div>
 
-          {/* Boutons d'action */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center mb-16"
-          >
-            {isAuthenticated ? (
-              <>
-                <Link
-                  href="/profile"
-                  className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all transform hover:-translate-y-1 shadow-xl flex items-center justify-center gap-3 text-lg font-bold"
-                >
-                  Mon profil
-                  <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-                </Link>
-                <Link
-                  href="/events"
-                  className="px-8 py-4 bg-white text-gray-700 rounded-xl hover:bg-gray-50 transition-all border-2 border-gray-200 shadow-lg text-lg font-semibold"
-                >
-                  Voir les événements
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link
-                  href="/auth/login"
-                  className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all transform hover:-translate-y-1 shadow-xl flex items-center justify-center gap-3 text-lg font-bold"
-                >
-                  Se connecter
-                  <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-                </Link>
-                <Link
-                  href="/auth/register"
-                  className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-green-600 text-white rounded-xl hover:from-emerald-700 hover:to-green-700 transition-all transform hover:-translate-y-1 shadow-xl text-lg font-bold"
-                >
-                  Rejoindre notre famille
-                </Link>
-              </>
-            )}
-          </motion.div>
-
-          {/* Indicateur de scroll */}
+          {/* SCROLL */}
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            className="absolute bottom-8 left-1/2 -translate-x-1/2"
           >
-            <ChevronDown className="w-8 h-8 text-gray-400" />
+            <ChevronDown className="w-8 h-8 text-white/70" />
           </motion.div>
+
         </div>
       </section>
 
@@ -345,7 +326,7 @@ export default function HomePage() {
                   </div>
                   <h4 className="text-3xl font-bold mb-4">Noël en Famille</h4>
                   <p className="text-blue-100 mb-6">
-                    Une célébration magique de la naissance de Jésus avec musique, témoignages et partage.
+                    Une célébration  de la naissance de Jésus avec musique, témoignages et partage.
                   </p>
                   <div className="flex items-center gap-4 mb-6">
                     <div className="text-center">
@@ -354,7 +335,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <div className="font-semibold">À partir de 18h</div>
-                      <div className="opacity-90">Salle polyvalente</div>
+                      <div className="opacity-90">Auditorium de l'église</div>
                     </div>
                   </div>
                   <Link

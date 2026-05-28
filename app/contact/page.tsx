@@ -48,7 +48,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-800">Adresse</h3>
-                  <p className="text-gray-600">Rue de l'Église, Défalé</p>
+                  <p className="text-gray-600">Face Hôtel Défalé</p>
                   <p className="text-gray-600">Togo</p>
                 </div>
               </div>
@@ -61,7 +61,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-800">Téléphone</h3>
-                  <p className="text-gray-600">+228 XX XX XX XX</p>
+                  <p className="text-gray-600">+228 70 46 73 68</p>
                 </div>
               </div>
               
@@ -73,7 +73,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-800">Email</h3>
-                  <p className="text-gray-600">contact@eglise-grande-grace.tg</p>
+                  <p className="text-gray-600">directeurdeprojettg0405@gmail.com</p>
                 </div>
               </div>
               
@@ -85,7 +85,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-800">Heures d'ouverture</h3>
-                  <p className="text-gray-600">Dimanche: 9h - 12h (Culte principal)</p>
+                  <p className="text-gray-600">Dimanche: 7h - 9h (Culte principal)</p>
                   <p className="text-gray-600">Mercredi: 18h - 20h (Prière)</p>
                 </div>
               </div>

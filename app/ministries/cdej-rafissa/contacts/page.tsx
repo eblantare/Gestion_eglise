@@ -6,9 +6,9 @@ import { Mail, Phone, MapPin, Users, MessageSquare } from 'lucide-react'
 
 export default function ContactsPage() {
   const team = [
-    { name: "Pasteur Jean", role: "Responsable", phone: "+228 XX XX XX XX" },
-    { name: "Sarah K.", role: "Coordinatrice", phone: "+228 XX XX XX XX" },
-    { name: "Marc T.", role: "Responsable Louange", phone: "+228 XX XX XX XX" }
+    { name: "Pasteur Prosper K. SEGLA", role: "Pasteur", phone: "+228 90 32 73 22" },
+    { name: "N'DAOU K. Zembla.", role: "Président CPC", phone: "+228 79 60 43 01" },
+    { name: "Essoham K. BLANTARE", role: "Directeur du projet", phone: "+228 92 48 02 93" }
   ]
 
   return (

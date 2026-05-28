@@ -6,22 +6,22 @@ import { GraduationCap, Users, Clock, Target } from 'lucide-react'
 export default function FormationsPage() {
   const formations = [
     {
-      title: "Leadership Chrétien",
-      duration: "3 mois",
-      level: "Débutant",
-      places: "25 places"
+      title: "Institut Théologique de la Grâce-Défalé",
+      duration: "Pas définie",
+      level: "Tout le monde",
+      places: "ilimité"
     },
     {
       title: "Musique & Louange",
-      duration: "2 mois",
+      duration: "Pas définie",
       level: "Tous niveaux",
-      places: "20 places"
+      places: "Non limité"
     },
     {
       title: "Évangélisation",
       duration: "1 mois",
-      level: "Intermédiaire",
-      places: "30 places"
+      level: "Ouvert à tout",
+      places: "Pas limité"
     }
   ]
 
